@@ -1,32 +1,58 @@
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-    <div class="row">
-        <div class="col">
-            <label for="from-label">From</label>
-            <select class="form-select form-select-lg mb-3" name="from" id="from" [(ngModel)]="from">
-                <option>  </option>
-                <option *ngFor="let cFrom of currencyList" [value]=cFrom.currencyShortName> {{ cFrom.currencyShortName }} </option>
-            </select>
+<main>
+    <div class="container py-4">
+      <header class="pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <span class="fs-4">Currency Converter</span>
+        </a>
+      </header>
+  
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+         
+            
+
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
+                <div class="row">
+                    <div class="col">
+                        <label for="from-label">From</label>
+                        <select class="form-select form-select-lg mb-3" name="from" id="from" [(ngModel)]="from">
+                            <option>  </option>
+                            <option *ngFor="let cFrom of currencyList" [value]=cFrom.currencyShortName> {{ cFrom.currencyShortName }} </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="to-label">To</label>
+                        <select class="form-select form-select-lg mb-3" name="to" id="to" [(ngModel)]="to">
+                            <option>  </option>
+                            <option *ngFor="let cTo of currencyList" [value]=cTo.currencyShortName> {{ cTo.currencyShortName }} </option>
+                        </select> 
+                    </div>
+                    <div class="col">
+                    <label for="quantity-label">Quantity</label>
+                    <input type="number" min="0" step="1" class="form-control form-select-lg mb-3" name="quantity" id="quantity" [(ngModel)]="quantity">
+                    </div>
+                    <div class="col">
+                        <br>
+                        <button class="btn btn-primary form-select-lg mb-3" type="submit">Convert</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger form-select-lg mb-3" type="button" (click)="reset()">Clear</button>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="fs-4">{{ result }}</span>
+                        
+                    </div>
+                </div>
+            </form>
+
+
         </div>
-        <div class="col">
-            <label for="to-label">To</label>
-            <select class="form-select form-select-lg mb-3" name="to" id="to" [(ngModel)]="to">
-                <option>  </option>
-                <option *ngFor="let cTo of currencyList" [value]=cTo.currencyShortName> {{ cTo.currencyShortName }} </option>
-            </select> 
-        </div>
-        <div class="col">
-        <label for="quantity-label">Quantity</label>
-        <input type="text" class="form-control form-select-lg mb-3" name="quantity" id="quantity" [(ngModel)]="quantity">
-        </div>
-        <div class="col">
-            <br>
-            <button class="btn btn-primary form-select-lg mb-3" type="submit">Convert</button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-danger form-select-lg mb-3" type="button">Clear</button>
-        </div>
-        <br>
-        <div>
-            {{ result }}
-        </div>
+      </div>
+  
+      
+  
+      <footer class="pt-3 mt-4 text-muted border-top">
+        &copy; 2022 - Made by João Martins
+      </footer>
     </div>
-</form>
+  </main>

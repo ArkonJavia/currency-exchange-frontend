@@ -45,21 +45,29 @@ export class ExchangeConverterComponent implements OnInit {
     this.exchangeService.convertCurrency(this.from, this.to, this.quantity).subscribe(
       data => {
         this.currencyConverter = data;
+        console.log(' -> ' + this.currencyConverter.statusCode);
         // insert 0
-        if(this.currencyConverter.statusCode === 'ZERO_INSERTED') {
+        if(this.currencyConverter.statusCode === 'ZERO_NUMBER_ERROR') {
           this.cleanFields();
-          window.alert(this.currencyConverter.errorMessage.errorName + ' - ' + this.currencyConverter.errorMessage.errorDescription);
+          window.alert(this.currencyConverter.errorMessage.errorName + ' ' + this.currencyConverter.errorMessage.errorDescription);
         }
         // insert negative values 
-        else if(this.currencyConverter.statusCode === 'NEGATIVE_NUMBER') {
+        else if(this.currencyConverter.statusCode === 'NEGATIVE_NUMBER_ERROR') {
           this.cleanFields();
-          window.alert(this.currencyConverter.errorMessage.errorName + ' - ' + this.currencyConverter.errorMessage.errorDescription);
+          window.alert(this.currencyConverter.errorMessage.errorName + ' ' + this.currencyConverter.errorMessage.errorDescription);
         } 
-        // miss some fields
-        else if (this.currencyConverter.statusCode ==="EMPTY_VALUE" ) {
+        //
+        else if(this.currencyConverter.statusCode === 'NO_NUMBER_ERROR') {
           this.cleanFields();
-          window.alert(this.currencyConverter.errorMessage.errorName + ' - ' + this.currencyConverter.errorMessage.errorDescription);
-        }else {
+          window.alert(this.currencyConverter.errorMessage.errorName + ' ' + this.currencyConverter.errorMessage.errorDescription);
+        }
+        // miss some fields
+        else if (this.currencyConverter.statusCode === 'NULL_FROM_OR_TO_ERROR') {
+          this.cleanFields();
+          window.alert(this.currencyConverter.errorMessage.errorName + ' ' + this.currencyConverter.errorMessage.errorDescription);
+        }
+        // success convertion
+        else {
           this.result = this.currencyConverter.result;
         }
         
@@ -72,6 +80,11 @@ export class ExchangeConverterComponent implements OnInit {
     this.from = '';
     this.to = '';
     this.quantity = 0;
+  }
+
+  public reset() {
+    this.cleanFields();
+    
   }
 
   
