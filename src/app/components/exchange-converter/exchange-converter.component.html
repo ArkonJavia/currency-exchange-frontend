@@ -1,0 +1,32 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="row">
+        <div class="col">
+            <label for="from-label">From</label>
+            <select class="form-select form-select-lg mb-3" name="from" id="from" [(ngModel)]="from">
+                <option>  </option>
+                <option *ngFor="let cFrom of currencyList" [value]=cFrom.currencyShortName> {{ cFrom.currencyShortName }} </option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="to-label">To</label>
+            <select class="form-select form-select-lg mb-3" name="to" id="to" [(ngModel)]="to">
+                <option>  </option>
+                <option *ngFor="let cTo of currencyList" [value]=cTo.currencyShortName> {{ cTo.currencyShortName }} </option>
+            </select> 
+        </div>
+        <div class="col">
+        <label for="quantity-label">Quantity</label>
+        <input type="text" class="form-control form-select-lg mb-3" name="quantity" id="quantity" [(ngModel)]="quantity">
+        </div>
+        <div class="col">
+            <br>
+            <button class="btn btn-primary form-select-lg mb-3" type="submit">Convert</button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="btn btn-danger form-select-lg mb-3" type="button">Clear</button>
+        </div>
+        <br>
+        <div>
+            {{ result }}
+        </div>
+    </div>
+</form>

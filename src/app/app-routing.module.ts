@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { ExchangeConverterComponent } from './components/exchange-converter/exchange-converter.component';
+
+const routes: Routes = [ 
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: ExchangeConverterComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
