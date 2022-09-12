@@ -80,6 +80,7 @@ export class ExchangeConverterComponent implements OnInit {
     this.from = '';
     this.to = '';
     this.quantity = 0;
+    this.result = 0;
   }
 
   public reset() {
